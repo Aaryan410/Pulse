@@ -1,0 +1,3 @@
+C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/build/CMakeFiles/Pulse.dir
+C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/build/CMakeFiles/edit_cache.dir
+C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/build/CMakeFiles/rebuild_cache.dir
