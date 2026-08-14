@@ -5,6 +5,8 @@
 namespace {
     const wchar_t* WINDOW_CLASS_NAME = L"PulseOverlay";
 
+    POINT cursorPosition{};
+
     LRESULT CALLBACK windowProcedure(
         HWND hwnd,
         UINT message,
@@ -12,29 +14,55 @@ namespace {
         LPARAM lParam
     ) {
         switch (message) {
+    
             case WM_PAINT: {
                 PAINTSTRUCT paint{};
                 HDC deviceContext = BeginPaint(hwnd, &paint);
-    
-                HBRUSH brush = CreateSolidBrush(RGB(255, 255, 255));
-    
-                HBRUSH oldBrush =
-                    static_cast<HBRUSH>(
-                        SelectObject(deviceContext, brush)
-                    );
-    
-                Ellipse(
+
+                RECT clientArea{};
+                GetClientRect(hwnd, &clientArea);
+
+                HBRUSH transparentBrush =
+                    CreateSolidBrush(RGB(0, 0, 0));
+
+                FillRect (
                     deviceContext,
-                    900,
-                    500,
-                    950,
-                    550
+                    &clientArea,
+                    transparentBrush
                 );
-    
+
+                DeleteObject(transparentBrush);
+
+                HBRUSH Brush =
+                    CreateSolidBrush(RGB(255, 255, 255));
+
+                HBRUSH oldBrush =
+                    static_cast<HBRUSH> (
+                        SelectObject(deviceContext, Brush)
+                    );
+
+                const int radius = 25;
+
+                Ellipse (
+                    deviceContext,
+                    cursorPosition.x - radius,
+                    cursorPosition.y - radius,
+                    cursorPosition.x + radius,
+                    cursorPosition.y + radius
+                );
+
                 SelectObject(deviceContext, oldBrush);
-                DeleteObject(brush);
-    
+                DeleteObject(Brush);
+
                 EndPaint(hwnd, &paint);
+
+                return 0;
+            }
+    
+            case WM_TIMER: {
+                GetCursorPos(&cursorPosition);
+                InvalidateRect(hwnd, nullptr, TRUE);
+                UpdateWindow(hwnd);
     
                 return 0;
             }
@@ -45,6 +73,9 @@ namespace {
             case WM_DESTROY:
                 PostQuitMessage(0);
                 return 0;
+
+            case WM_ERASEBKGND:
+                return 1;
     
             default:
                 return DefWindowProcW(
@@ -53,7 +84,7 @@ namespace {
                     wParam,
                     lParam
                 );
-        }
+        }        
     }
 }
 
@@ -104,6 +135,13 @@ bool Overlay::create() {
         RGB(0, 0, 0),
         0,
         LWA_COLORKEY
+    );
+
+    SetTimer (
+        window, 
+        1,
+        16,
+        nullptr
     );
 
     ShowWindow(window, SW_SHOW);

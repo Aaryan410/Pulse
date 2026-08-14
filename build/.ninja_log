@@ -4,3 +4,13 @@
 18	907	8084091258011572	CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj	77ed008a932a5429
 5	747	8084136481999123	CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj	77ed008a932a5429
 748	862	8084136489427023	Pulse.exe	517838007c836441
+4	787	8084143166438971	CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj	77ed008a932a5429
+788	906	8084143174279471	Pulse.exe	517838007c836441
+2	11	8084284249551581	clean	7cad43144eea5c8
+13	533	8084284249862574	CMakeFiles/Pulse.dir/src/main.cpp.obj	93ea5186e9d18e44
+17	30	8084289815410076	clean	7cad43144eea5c8
+15	489	8084289815827662	CMakeFiles/Pulse.dir/src/main.cpp.obj	93ea5186e9d18e44
+19	31	8084292933751022	clean	7cad43144eea5c8
+13	424	8084292934117668	CMakeFiles/Pulse.dir/src/main.cpp.obj	93ea5186e9d18e44
+19	956	8084292934183223	CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj	77ed008a932a5429
+956	1241	8084292943556196	Pulse.exe	517838007c836441
