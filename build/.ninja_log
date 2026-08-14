@@ -1,3 +1,6 @@
 # ninja log v7
-23	517	8082427074165215	CMakeFiles/Pulse.dir/src/main.cpp.obj	93ea5186e9d18e44
+25	2077	8084083271168252	CMakeFiles/Pulse.dir/src/main.cpp.obj	93ea5186e9d18e44
 519	738	8082427079124935	Pulse.exe	238c3de07cdf7757
+14	458	8084091257970808	CMakeFiles/Pulse.dir/src/main.cpp.obj	93ea5186e9d18e44
+18	907	8084091258011572	CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj	77ed008a932a5429
+908	1195	8084091266914573	Pulse.exe	517838007c836441

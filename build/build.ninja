@@ -51,6 +51,13 @@ build CMakeFiles/Pulse.dir/src/main.cpp.obj: CXX_COMPILER__Pulse_unscanned_ C$:/
   OBJECT_FILE_DIR = CMakeFiles\Pulse.dir\src
   TARGET_SUPPORT_DIR = CMakeFiles\Pulse.dir
 
+build CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj: CXX_COMPILER__Pulse_unscanned_ C$:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/platform/windows/Overlay.cpp || cmake_object_order_depends_target_Pulse
+  DEP_FILE = CMakeFiles\Pulse.dir\src\platform\windows\Overlay.cpp.obj.d
+  FLAGS = -std=c++20
+  OBJECT_DIR = CMakeFiles\Pulse.dir
+  OBJECT_FILE_DIR = CMakeFiles\Pulse.dir\src\platform\windows
+  TARGET_SUPPORT_DIR = CMakeFiles\Pulse.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Pulse
@@ -59,8 +66,8 @@ build CMakeFiles/Pulse.dir/src/main.cpp.obj: CXX_COMPILER__Pulse_unscanned_ C$:/
 #############################################
 # Link the executable Pulse.exe
 
-build Pulse.exe: CXX_EXECUTABLE_LINKER__Pulse_ CMakeFiles/Pulse.dir/src/main.cpp.obj
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build Pulse.exe: CXX_EXECUTABLE_LINKER__Pulse_ CMakeFiles/Pulse.dir/src/main.cpp.obj CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj
+  LINK_LIBRARIES = -luser32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Pulse.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

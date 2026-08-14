@@ -8,4 +8,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(Pulse
     src/main.cpp
+    src/platform/windows/Overlay.cpp
 )
+
+if (WIN32)
+    target_link_libraries(Pulse PRIVATE user32)
+endif()
