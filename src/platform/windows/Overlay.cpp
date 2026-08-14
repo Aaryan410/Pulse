@@ -12,13 +12,40 @@ namespace {
         LPARAM lParam
     ) {
         switch (message) {
+            case WM_PAINT: {
+                PAINTSTRUCT paint{};
+                HDC deviceContext = BeginPaint(hwnd, &paint);
+    
+                HBRUSH brush = CreateSolidBrush(RGB(255, 255, 255));
+    
+                HBRUSH oldBrush =
+                    static_cast<HBRUSH>(
+                        SelectObject(deviceContext, brush)
+                    );
+    
+                Ellipse(
+                    deviceContext,
+                    900,
+                    500,
+                    950,
+                    550
+                );
+    
+                SelectObject(deviceContext, oldBrush);
+                DeleteObject(brush);
+    
+                EndPaint(hwnd, &paint);
+    
+                return 0;
+            }
+    
             case WM_NCHITTEST:
                 return HTTRANSPARENT;
-
+    
             case WM_DESTROY:
                 PostQuitMessage(0);
                 return 0;
-
+    
             default:
                 return DefWindowProcW(
                     hwnd,
@@ -29,6 +56,7 @@ namespace {
         }
     }
 }
+
 
 bool Overlay::create() {
     HINSTANCE instance = GetModuleHandleW(nullptr);
@@ -83,6 +111,7 @@ bool Overlay::create() {
 
     return true;
 }
+
 
 void Overlay::run() {
     MSG message{};
