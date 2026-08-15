@@ -5,12 +5,15 @@
 #include <algorithm>
 #include <random>
 #include <vector>
+#include <cmath>
 using namespace std;
 
 namespace {
     const wchar_t* WINDOW_CLASS_NAME = L"PulseOverlay";
 
     POINT cursorPosition{};
+
+    bool previousLeftButtonDown = false;
 
     struct Particle {
         float x;
@@ -58,6 +61,47 @@ namespace {
         particle.blue = 255;
 
         particles.push_back(particle);
+    }
+
+    void spawnBurst() {
+        uniform_real_distribution<float> angleDistribution (
+            0.0f,
+            6.283185f
+        );
+
+        uniform_real_distribution<float> speedDistribution (
+            3.0f,
+            7.0f
+        );
+
+        for (int i = 0; i < 30; i++)
+        {
+            Particle particle{};
+
+            particle.x = static_cast<float>(cursorPosition.x);
+            particle.y = static_cast<float>(cursorPosition.y);
+
+            float angle = angleDistribution(randomGenerator);
+            float speed = speedDistribution(randomGenerator);
+
+            particle.velocityX = cosf(angle) * speed;
+
+            particle.velocityY = sinf(angle) * speed;
+
+            particle.lifetime = lifetimeDistribution(randomGenerator);
+
+            particle.maxLifetime = particle.lifetime;
+
+            particle.size = sizeDistribution(randomGenerator);
+
+            particle.red = colorDistribution(randomGenerator);
+
+            particle.green = colorDistribution(randomGenerator);
+
+            particle.blue = 255;
+
+            particles.push_back(particle);
+        }
     }
 
     void updateParticles(float deltaTime) {
@@ -178,6 +222,14 @@ LRESULT CALLBACK windowProcedure (
 
         case WM_TIMER: {
             GetCursorPos(&cursorPosition);
+
+            bool leftButtonDown = (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0;
+
+            if (leftButtonDown && !previousLeftButtonDown) {
+                spawnBurst();
+            }
+
+            previousLeftButtonDown = leftButtonDown;
 
             for (int i = 0; i < 3; i++)
             {
