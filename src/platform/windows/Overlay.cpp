@@ -2,89 +2,193 @@
 
 #include <windows.h>
 
+#include <algorithm>
+#include <random>
+#include <vector>
+using namespace std;
+
 namespace {
     const wchar_t* WINDOW_CLASS_NAME = L"PulseOverlay";
 
     POINT cursorPosition{};
 
-    LRESULT CALLBACK windowProcedure(
-        HWND hwnd,
-        UINT message,
-        WPARAM wParam,
-        LPARAM lParam
-    ) {
-        switch (message) {
-    
-            case WM_PAINT: {
-                PAINTSTRUCT paint{};
-                HDC deviceContext = BeginPaint(hwnd, &paint);
+    struct Particle {
+        float x;
+        float y;
 
-                RECT clientArea{};
-                GetClientRect(hwnd, &clientArea);
+        float velocityX;
+        float velocityY;
 
-                HBRUSH transparentBrush =
-                    CreateSolidBrush(RGB(0, 0, 0));
+        float lifetime;
+        float maxLifetime;
 
-                FillRect (
-                    deviceContext,
-                    &clientArea,
-                    transparentBrush
-                );
+        int size;
+    };
 
-                DeleteObject(transparentBrush);
+    vector<Particle> particles;
 
-                HBRUSH Brush =
-                    CreateSolidBrush(RGB(255, 255, 255));
+    random_device randomDevice;
+    mt19937 randomGenerator(randomDevice());
+
+    uniform_real_distribution<float> velocityDistribution(-1.5f, 1.5f);
+    uniform_real_distribution<float> lifetimeDistribution(0.4f, 0.8f);
+    uniform_int_distribution<int> sizeDistribution(5, 10);
+
+    void spawnParticle() {
+        Particle particle{};
+
+        particle.x = static_cast<float>(cursorPosition.x);
+        particle.y = static_cast<float>(cursorPosition.y);
+
+        particle.velocityX = velocityDistribution(randomGenerator);
+        particle.velocityY = velocityDistribution(randomGenerator);
+
+        particle.lifetime = lifetimeDistribution(randomGenerator);
+        particle.maxLifetime = particle.lifetime;
+
+        particle.size = sizeDistribution(randomGenerator);
+
+        particles.push_back(particle);
+    }
+
+    void updateParticles(float deltaTime) {
+        for (Particle& particle : particles) {
+            particle.x += particle.velocityX * deltaTime * 60.0f;
+            particle.y += particle.velocityY * deltaTime * 60.0f;
+
+            particle.lifetime -= deltaTime;
+        }
+
+        particles.erase (
+            remove_if (
+                particles.begin(),
+                particles.end(),
+                [](const Particle& particle) {
+                    return particle.lifetime <= 0.0f;
+                }
+            ),
+            particles.end()
+        );
+    }
+}
+
+
+LRESULT CALLBACK windowProcedure (
+    HWND hwnd,
+    UINT message,
+    WPARAM wParam,
+    LPARAM lParam
+) {
+    switch (message) {
+        case WM_PAINT: {
+            PAINTSTRUCT paint{};
+            HDC deviceContext = BeginPaint(hwnd, &paint);
+
+            RECT clientArea{};
+            GetClientRect(hwnd, &clientArea);
+
+            HBRUSH transparentBrush =
+                CreateSolidBrush(RGB(0, 0, 0));
+            
+            FillRect (
+                deviceContext,
+                &clientArea,
+                transparentBrush
+            );
+
+            DeleteObject(transparentBrush);
+
+            for (const Particle& particle : particles) {
+
+                float lifeRatio =
+                    particle.lifetime / particle.maxLifetime;
+
+                int brightness = 
+                    static_cast<int> (255.0f * lifeRatio);
+
+                if (brightness < 1) {
+                    brightness = 1;
+                }
+
+                HBRUSH brush =
+                    CreateSolidBrush (
+                        RGB (
+                            brightness,
+                            brightness,
+                            brightness
+                        )
+                    );
 
                 HBRUSH oldBrush =
                     static_cast<HBRUSH> (
-                        SelectObject(deviceContext, Brush)
+                        SelectObject (deviceContext, brush)
                     );
 
-                const int radius = 25;
+                int halfSize = particle.size / 2;
+
+                int left =
+                    static_cast<int>(particle.x) - halfSize;
+
+                int top =
+                    static_cast<int>(particle.y) - halfSize;
+
+                int right =
+                    static_cast<int>(particle.x) + halfSize;
+
+                int bottom =
+                    static_cast<int>(particle.y) + halfSize;
 
                 Ellipse (
                     deviceContext,
-                    cursorPosition.x - radius,
-                    cursorPosition.y - radius,
-                    cursorPosition.x + radius,
-                    cursorPosition.y + radius
+                    left,
+                    top,
+                    right,
+                    bottom
                 );
 
                 SelectObject(deviceContext, oldBrush);
-                DeleteObject(Brush);
-
-                EndPaint(hwnd, &paint);
-
-                return 0;
+                DeleteObject(brush);
             }
-    
-            case WM_TIMER: {
-                GetCursorPos(&cursorPosition);
-                InvalidateRect(hwnd, nullptr, TRUE);
-                UpdateWindow(hwnd);
-    
-                return 0;
-            }
-    
-            case WM_NCHITTEST:
-                return HTTRANSPARENT;
-    
-            case WM_DESTROY:
-                PostQuitMessage(0);
-                return 0;
 
-            case WM_ERASEBKGND:
-                return 1;
-    
-            default:
-                return DefWindowProcW(
-                    hwnd,
-                    message,
-                    wParam,
-                    lParam
-                );
-        }        
+            EndPaint(hwnd, &paint);
+
+            return 0;
+        }
+
+        case WM_TIMER: {
+            GetCursorPos(&cursorPosition);
+
+            for (int i = 0; i < 3; i++)
+            {
+                spawnParticle();
+            }
+
+            updateParticles(0.016f);
+
+            InvalidateRect(hwnd, nullptr, TRUE);
+            UpdateWindow(hwnd);
+
+            return 0;
+        }
+
+        case WM_NCHITTEST:
+            return HTTRANSPARENT;
+
+        case WM_ERASEBKGND:
+            return 1;
+
+        case WM_DESTROY:
+            KillTimer(hwnd, 1);
+            PostQuitMessage(0);
+            return 0;
+
+        default:
+            return DefWindowProcW (
+                hwnd,
+                message,
+                wParam,
+                lParam
+            );
     }
 }
 
@@ -94,22 +198,22 @@ bool Overlay::create() {
 
     WNDCLASSEXW windowClass{};
     windowClass.cbSize = sizeof(WNDCLASSEXW);
-    windowClass.lpfnWndProc = windowProcedure;
     windowClass.hInstance = instance;
     windowClass.lpszClassName = WINDOW_CLASS_NAME;
+    windowClass.lpfnWndProc = windowProcedure;
 
     if (!RegisterClassExW(&windowClass)) {
         return false;
     }
 
-    HWND window = CreateWindowExW(
+    HWND window = CreateWindowExW (
         WS_EX_LAYERED |
         WS_EX_TRANSPARENT |
         WS_EX_TOPMOST |
         WS_EX_NOACTIVATE,
 
         WINDOW_CLASS_NAME,
-        L"Pulse",
+        L"PULSE",
 
         WS_POPUP,
 
@@ -130,7 +234,7 @@ bool Overlay::create() {
 
     hwnd = window;
 
-    SetLayeredWindowAttributes(
+    SetLayeredWindowAttributes (
         window,
         RGB(0, 0, 0),
         0,
@@ -138,7 +242,7 @@ bool Overlay::create() {
     );
 
     SetTimer (
-        window, 
+        window,
         1,
         16,
         nullptr
@@ -149,7 +253,6 @@ bool Overlay::create() {
 
     return true;
 }
-
 
 void Overlay::run() {
     MSG message{};
