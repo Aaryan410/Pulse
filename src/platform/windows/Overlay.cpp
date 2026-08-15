@@ -23,6 +23,10 @@ namespace {
         float maxLifetime;
 
         int size;
+
+        int red;
+        int green;
+        int blue;
     };
 
     vector<Particle> particles;
@@ -33,6 +37,7 @@ namespace {
     uniform_real_distribution<float> velocityDistribution(-1.5f, 1.5f);
     uniform_real_distribution<float> lifetimeDistribution(0.4f, 0.8f);
     uniform_int_distribution<int> sizeDistribution(5, 10);
+    uniform_int_distribution<int> colorDistribution(150, 255);
 
     void spawnParticle() {
         Particle particle{};
@@ -48,13 +53,20 @@ namespace {
 
         particle.size = sizeDistribution(randomGenerator);
 
+        particle.red = colorDistribution(randomGenerator);
+        particle.green = colorDistribution(randomGenerator);
+        particle.blue = 255;
+
         particles.push_back(particle);
     }
 
     void updateParticles(float deltaTime) {
         for (Particle& particle : particles) {
-            particle.x += particle.velocityX * deltaTime * 60.0f;
-            particle.y += particle.velocityY * deltaTime * 60.0f;
+            particle.velocityY += 0.08f * deltaTime * 60.0f;
+            particle.velocityX *= 0.98f;
+            particle.velocityY *= 0.98f;
+
+            particle.x += particle.velocityY * deltaTime * 60.0f;
 
             particle.lifetime -= deltaTime;
         }
@@ -106,16 +118,24 @@ LRESULT CALLBACK windowProcedure (
                 int brightness = 
                     static_cast<int> (255.0f * lifeRatio);
 
-                if (brightness < 1) {
-                    brightness = 1;
-                }
+                int red = static_cast<int> (
+                    particle.red * lifeRatio
+                );
+
+                int green = static_cast<int> (
+                    particle.green * lifeRatio
+                );
+
+                int blue = static_cast<int> (
+                    particle.blue * lifeRatio
+                );
 
                 HBRUSH brush =
                     CreateSolidBrush (
                         RGB (
-                            brightness,
-                            brightness,
-                            brightness
+                            red,
+                            green,
+                            blue
                         )
                     );
 
