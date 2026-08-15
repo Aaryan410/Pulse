@@ -128,6 +128,30 @@ Pulse/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/build
 .PHONY : Pulse/fast
 
+src/effects/ParticleSystem.obj: src/effects/ParticleSystem.cpp.obj
+.PHONY : src/effects/ParticleSystem.obj
+
+# target to build an object file
+src/effects/ParticleSystem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/src/effects/ParticleSystem.cpp.obj
+.PHONY : src/effects/ParticleSystem.cpp.obj
+
+src/effects/ParticleSystem.i: src/effects/ParticleSystem.cpp.i
+.PHONY : src/effects/ParticleSystem.i
+
+# target to preprocess a source file
+src/effects/ParticleSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/src/effects/ParticleSystem.cpp.i
+.PHONY : src/effects/ParticleSystem.cpp.i
+
+src/effects/ParticleSystem.s: src/effects/ParticleSystem.cpp.s
+.PHONY : src/effects/ParticleSystem.s
+
+# target to generate assembly for a file
+src/effects/ParticleSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/src/effects/ParticleSystem.cpp.s
+.PHONY : src/effects/ParticleSystem.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -185,6 +209,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Pulse
+	@echo ... src/effects/ParticleSystem.obj
+	@echo ... src/effects/ParticleSystem.i
+	@echo ... src/effects/ParticleSystem.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

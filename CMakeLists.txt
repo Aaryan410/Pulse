@@ -9,6 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(Pulse
     src/main.cpp
     src/platform/windows/Overlay.cpp
+    src/effects/ParticleSystem.cpp
 )
 
 if (WIN32)
