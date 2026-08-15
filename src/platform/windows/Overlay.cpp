@@ -62,11 +62,12 @@ namespace {
 
     void updateParticles(float deltaTime) {
         for (Particle& particle : particles) {
-            particle.velocityY += 0.08f * deltaTime * 60.0f;
+            particle.velocityY += 0.35f * deltaTime * 60.0f;
             particle.velocityX *= 0.98f;
             particle.velocityY *= 0.98f;
 
-            particle.x += particle.velocityY * deltaTime * 60.0f;
+            particle.x += particle.velocityX * deltaTime * 60.0f;
+            particle.y += particle.velocityY * deltaTime * 60.0f;
 
             particle.lifetime -= deltaTime;
         }
