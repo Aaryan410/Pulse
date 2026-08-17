@@ -50,7 +50,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-std=c++20"
+					"fragment" : "-g -std=c++20"
 				}
 			],
 			"language" : "CXX",
@@ -75,6 +75,10 @@
 	{
 		"commandFragments" : 
 		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
 			{
 				"backtrace" : 2,
 				"fragment" : "-luser32",

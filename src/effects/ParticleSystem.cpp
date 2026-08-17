@@ -8,32 +8,39 @@ using namespace std;
 namespace {
     random_device randomDevice;
     mt19937 randomGenerator(randomDevice());
+}
 
-    uniform_real_distribution<float> velocityDistribution (
-        -1.5f,
-        1.5f
-    );
+ParticleSystem::ParticleSystem()
+    : config{} {
 
-    uniform_real_distribution<float> lifetimeDistribution (
-        0.4f,
-        0.8f
-    );
-
-    uniform_int_distribution<int> sizeDistribution (
-        5,
-        10
-    );
-
-    uniform_int_distribution<int> colorDistribution (
-        150,
-        255
-    );
 }
 
 void ParticleSystem::spawnTrailParticle (
     float x,
     float y
 ) {
+
+    uniform_real_distribution<float> velocityDistribution (
+        config.trailMinVelocity,
+        config.trailMaxVelocity
+    );
+
+    uniform_real_distribution<float> lifetimeDistribution (
+        config.minLifetime,
+        config.maxLifetime
+    );
+
+    uniform_int_distribution<int> sizeDistribution (
+        config.minSize,
+        config.maxSize
+    );
+
+    uniform_int_distribution<int> colorDistribution (
+        config.minColor,
+        config.maxColor
+    );
+
+
     Particle particle{};
 
     particle.x = x;
@@ -58,6 +65,7 @@ void ParticleSystem::spawnTrailParticle (
     particles.push_back(particle);
 }
 
+
 void ParticleSystem::spawnBurst (
     float x,
     float y
@@ -70,6 +78,26 @@ void ParticleSystem::spawnBurst (
     uniform_real_distribution<float> speedDistribution (
         3.0f,
         7.0f
+    );
+
+    uniform_real_distribution<float> velocityDistribution (
+        config.trailMinVelocity,
+        config.trailMaxVelocity
+    );
+
+    uniform_real_distribution<float> lifetimeDistribution (
+        config.minLifetime,
+        config.maxLifetime
+    );
+
+    uniform_int_distribution<int> sizeDistribution (
+        config.minSize,
+        config.maxSize
+    );
+
+    uniform_int_distribution<int> colorDistribution (
+        config.minColor,
+        config.maxColor
     );
 
     for (int i = 0; i < 30; ++i)
