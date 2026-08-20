@@ -128,6 +128,30 @@ Pulse/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/build
 .PHONY : Pulse/fast
 
+src/effects/EffectPresets.obj: src/effects/EffectPresets.cpp.obj
+.PHONY : src/effects/EffectPresets.obj
+
+# target to build an object file
+src/effects/EffectPresets.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/src/effects/EffectPresets.cpp.obj
+.PHONY : src/effects/EffectPresets.cpp.obj
+
+src/effects/EffectPresets.i: src/effects/EffectPresets.cpp.i
+.PHONY : src/effects/EffectPresets.i
+
+# target to preprocess a source file
+src/effects/EffectPresets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/src/effects/EffectPresets.cpp.i
+.PHONY : src/effects/EffectPresets.cpp.i
+
+src/effects/EffectPresets.s: src/effects/EffectPresets.cpp.s
+.PHONY : src/effects/EffectPresets.s
+
+# target to generate assembly for a file
+src/effects/EffectPresets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/src/effects/EffectPresets.cpp.s
+.PHONY : src/effects/EffectPresets.cpp.s
+
 src/effects/ParticleSystem.obj: src/effects/ParticleSystem.cpp.obj
 .PHONY : src/effects/ParticleSystem.obj
 
@@ -209,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Pulse
+	@echo ... src/effects/EffectPresets.obj
+	@echo ... src/effects/EffectPresets.i
+	@echo ... src/effects/EffectPresets.s
 	@echo ... src/effects/ParticleSystem.obj
 	@echo ... src/effects/ParticleSystem.i
 	@echo ... src/effects/ParticleSystem.s

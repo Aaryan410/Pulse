@@ -84,12 +84,12 @@ clean: CMakeFiles/Pulse.dir/clean
 CMakeFiles/Pulse.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles --progress-num=1,2,3,4 "Built target Pulse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles --progress-num=1,2,3,4,5 "Built target Pulse"
 .PHONY : CMakeFiles/Pulse.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Pulse.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Pulse.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles 0
 .PHONY : CMakeFiles/Pulse.dir/rule
@@ -101,7 +101,7 @@ Pulse: CMakeFiles/Pulse.dir/rule
 # codegen rule for target.
 CMakeFiles/Pulse.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pulse.dir\build.make CMakeFiles/Pulse.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target Pulse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\build\CMakeFiles --progress-num=1,2,3,4,5 "Finished codegen for target Pulse"
 .PHONY : CMakeFiles/Pulse.dir/codegen
 
 # clean rule for target.

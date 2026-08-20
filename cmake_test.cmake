@@ -1,5 +1,0 @@
-if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/src/effects/ParticleSystem.cpp")
-    message(STATUS "CMAKE CAN SEE PARTICLESYSTEM.CPP")
-else()
-    message(FATAL_ERROR "CMAKE CANNOT SEE PARTICLESYSTEM.CPP")
-endif()

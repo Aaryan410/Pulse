@@ -1,5 +1,6 @@
 #include "Overlay.h"
 #include "../../effects/ParticleSystem.h"
+#include "../../effects/EffectPresets.h"
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
@@ -11,7 +12,9 @@ namespace {
 
     POINT cursorPosition{};
     bool previousLeftButtonDown = false;
-    ParticleSystem particleSystem;
+    ParticleSystem particleSystem(
+        EffectPresets::createDefault()
+    );
 
     LRESULT CALLBACK windowProcedure (
         HWND hwnd,

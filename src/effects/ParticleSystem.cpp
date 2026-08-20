@@ -10,8 +10,10 @@ namespace {
     mt19937 randomGenerator(randomDevice());
 }
 
-ParticleSystem::ParticleSystem()
-    : config{} {
+ParticleSystem::ParticleSystem(
+    const EffectConfig& effectConfig
+)
+    : config{effectConfig} {
 
 }
 

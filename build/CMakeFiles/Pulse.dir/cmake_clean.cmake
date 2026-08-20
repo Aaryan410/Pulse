@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Pulse.dir/src/effects/EffectPresets.cpp.obj"
+  "CMakeFiles/Pulse.dir/src/effects/EffectPresets.cpp.obj.d"
   "CMakeFiles/Pulse.dir/src/effects/ParticleSystem.cpp.obj"
   "CMakeFiles/Pulse.dir/src/effects/ParticleSystem.cpp.obj.d"
   "CMakeFiles/Pulse.dir/src/main.cpp.obj"

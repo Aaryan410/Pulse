@@ -5,7 +5,7 @@
 
 class ParticleSystem {
     public:
-        ParticleSystem();
+        ParticleSystem(const EffectConfig& config);
         void spawnTrailParticle(float x, float y);
         void spawnBurst(float x, float y);
 

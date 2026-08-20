@@ -74,6 +74,7 @@ CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/ranges_util.h \
  C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/EffectConfig.h \
+ C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/EffectPresets.h \
  C:/msys64/ucrt64/include/windows.h C:/msys64/ucrt64/include/sdkddkver.h \
  C:/msys64/ucrt64/include/excpt.h \
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h \

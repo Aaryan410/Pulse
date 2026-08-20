@@ -10,6 +10,7 @@ add_executable(Pulse
     src/main.cpp
     src/platform/windows/Overlay.cpp
     src/effects/ParticleSystem.cpp
+    src/effects/EffectPresets.cpp
 )
 
 if (WIN32)
