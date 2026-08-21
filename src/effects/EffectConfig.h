@@ -1,4 +1,5 @@
 #pragma once
+#include "Color.h"
 
 struct EffectConfig {
 
@@ -18,6 +19,6 @@ struct EffectConfig {
     float gravity = 0.35f;
     float drag = 0.98f;
 
-    int minColor = 150;
-    int maxColor = 255;
+    Color startColor{150, 150, 255};
+    Color endColor{255, 255, 255};
 };

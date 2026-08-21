@@ -37,32 +37,21 @@ void ParticleSystem::spawnTrailParticle (
         config.maxSize
     );
 
-    uniform_int_distribution<int> colorDistribution (
-        config.minColor,
-        config.maxColor
-    );
-
-
     Particle particle{};
 
     particle.x = x;
     particle.y = y;
 
     particle.velocityX = velocityDistribution(randomGenerator);
-
     particle.velocityY = velocityDistribution(randomGenerator);
 
     particle.lifetime = lifetimeDistribution(randomGenerator);
-
     particle.maxLifetime = particle.lifetime;
 
     particle.size = sizeDistribution(randomGenerator);
 
-    particle.red = colorDistribution(randomGenerator);
-
-    particle.green = colorDistribution(randomGenerator);
-
-    particle.blue = 255;
+    particle.startColor = config.startColor;
+    particle.endColor = config.endColor;
 
     particles.push_back(particle);
 }
@@ -78,13 +67,8 @@ void ParticleSystem::spawnBurst (
     );
 
     uniform_real_distribution<float> speedDistribution (
-        3.0f,
-        7.0f
-    );
-
-    uniform_real_distribution<float> velocityDistribution (
-        config.trailMinVelocity,
-        config.trailMaxVelocity
+        config.burstMinSpeed,
+        config.burstMaxSpeed
     );
 
     uniform_real_distribution<float> lifetimeDistribution (
@@ -97,12 +81,7 @@ void ParticleSystem::spawnBurst (
         config.maxSize
     );
 
-    uniform_int_distribution<int> colorDistribution (
-        config.minColor,
-        config.maxColor
-    );
-
-    for (int i = 0; i < 30; ++i)
+    for (int i = 0; i < config.burstParticleCount; ++i)
     {
         Particle particle{};
 
@@ -114,20 +93,15 @@ void ParticleSystem::spawnBurst (
         float speed = speedDistribution(randomGenerator);
 
         particle.velocityX = cos(angle) * speed;
-
         particle.velocityY = sin(angle) * speed;
 
         particle.lifetime = lifetimeDistribution(randomGenerator);
-
         particle.maxLifetime = particle.lifetime;
 
         particle.size = sizeDistribution(randomGenerator);
 
-        particle.red = colorDistribution(randomGenerator);
-
-        particle.green = colorDistribution(randomGenerator);
-
-        particle.blue = 255;
+        particle.startColor = config.startColor;
+        particle.endColor = config.endColor;
 
         particles.push_back(particle);
     }
@@ -138,10 +112,10 @@ void ParticleSystem::update (
 ) {
     for (Particle& particle : particles) {
         
-        particle.velocityY += 0.35f * deltaTime * 60.0f;
+        particle.velocityY += config.gravity * deltaTime * 60.0f;
 
-        particle.velocityX *= 0.98f;
-        particle.velocityY *= 0.98f;
+        particle.velocityX *= config.drag;
+        particle.velocityY *= config.drag;
 
         particle.x += particle.velocityX * deltaTime * 60.0f;
         particle.y += particle.velocityY * deltaTime * 60.0f;

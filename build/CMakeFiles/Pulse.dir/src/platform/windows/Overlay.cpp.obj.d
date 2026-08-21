@@ -3,6 +3,7 @@ CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj: \
  C:\Users\dilip.jadav\Desktop\HackClub_projects\Pulse\src\platform\windows\Overlay.h \
  C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/ParticleSystem.h \
  C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/Particle.h \
+ C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/Color.h \
  C:/msys64/ucrt64/include/c++/16.1.0/vector \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h \

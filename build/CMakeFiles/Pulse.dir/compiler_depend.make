@@ -365,6 +365,7 @@ CMakeFiles/Pulse.dir/src/main.cpp.obj: C:/Users/dilip.jadav/Desktop/HackClub_pro
 
 CMakeFiles/Pulse.dir/src/platform/windows/Overlay.cpp.obj: C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/platform/windows/Overlay.cpp \
   C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/EffectConfig.h \
+  C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/EffectPresets.h \
   C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/Particle.h \
   C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/ParticleSystem.h \
   C:/msys64/ucrt64/include/_mingw.h \
@@ -667,8 +668,6 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/usermsrintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/uintrintrin.h:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/tbmintrin.h:
-
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/sm4intrin.h:
@@ -898,6 +897,10 @@ C:/msys64/ucrt64/include/c++/16.1.0/clocale:
 C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
+
+C:/msys64/ucrt64/include/pshpack1.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cctype:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h:
 
@@ -1283,6 +1286,10 @@ C:/msys64/ucrt64/include/apiset.h:
 
 C:/msys64/ucrt64/include/pthread_compat.h:
 
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/tbmintrin.h:
+
+C:/Users/dilip.jadav/Desktop/HackClub_projects/Pulse/src/effects/EffectPresets.h:
+
 C:/msys64/ucrt64/include/pthread_time.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/streambuf:
@@ -1456,10 +1463,6 @@ C:/msys64/ucrt64/include/memoryapi.h:
 C:/msys64/ucrt64/include/namespaceapi.h:
 
 C:/msys64/ucrt64/include/processenv.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cctype:
-
-C:/msys64/ucrt64/include/pshpack1.h:
 
 C:/msys64/ucrt64/include/processthreadsapi.h:
 

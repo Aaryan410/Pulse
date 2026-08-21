@@ -1,4 +1,5 @@
 #pragma once
+#include "Color.h"
 
 struct Particle {
     float x;
@@ -12,7 +13,6 @@ struct Particle {
 
     int size;
 
-    int red;
-    int green;
-    int blue;
+    Color startColor;
+    Color endColor;
 };

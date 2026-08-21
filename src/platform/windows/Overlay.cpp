@@ -12,8 +12,8 @@ namespace {
 
     POINT cursorPosition{};
     bool previousLeftButtonDown = false;
-    ParticleSystem particleSystem(
-        EffectPresets::createDefault()
+    ParticleSystem particleSystem (
+        EffectPresets::createFire()
     );
 
     LRESULT CALLBACK windowProcedure (
@@ -42,11 +42,28 @@ namespace {
                 {
                     float lifeRatio = particle.lifetime / particle.maxLifetime;
 
-                    int red = static_cast<int>(particle.red * lifeRatio);
+                    float progress = 1.0f - lifeRatio;
 
-                    int green = static_cast<int>(particle.green * lifeRatio);
+                    int red = static_cast<int> (
+                        particle.startColor.red + 
+                        (
+                            particle.endColor.red - particle.startColor.red
+                        ) * progress
+                    );
 
-                    int blue = static_cast<int>(particle.blue * lifeRatio);
+                    int green = static_cast<int> (
+                        particle.startColor.green +
+                        (
+                            particle.endColor.green - particle.startColor.green
+                        ) * progress
+                    );
+
+                    int blue = static_cast<int> (
+                        particle.startColor.blue +
+                        (
+                            particle.endColor.blue - particle.startColor.blue
+                        ) * progress
+                    );
 
                     HBRUSH brush = CreateSolidBrush(RGB(red, green, blue));
 

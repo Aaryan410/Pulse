@@ -1,4 +1,4 @@
-#include "EffectPResets.h"
+#include "EffectPresets.h"
 
 namespace EffectPresets {
 
@@ -10,18 +10,24 @@ namespace EffectPresets {
     EffectConfig createFire() {
         EffectConfig config;
 
-        config.gravity = -0.15f;
-        config.drag = 0.97f;
+        config.trailMinVelocity = -0.8f;
+        config.trailMaxVelocity = 0.8f;
 
-        config.minLifetime = 0.5f;
-        config.maxLifetime = 1.2f;
+        config.gravity = -0.8;
+        config.drag = 0.96;
 
-        config.minSize = 4;
-        config.maxSize = 9;
+        config.minLifetime = 0.6f;
+        config.maxLifetime = 1.4f;
 
-        config.burstParticleCount = 20;
-        config.burstMinSpeed = 2.0f;
-        config.burstMaxSpeed = 5.0f;
+        config.minSize = 3;
+        config.maxSize = 8;
+
+        config.burstParticleCount = 35;
+        config.burstMinSpeed = 1.5f;
+        config.burstMaxSpeed = 4.0f;
+
+        config.startColor = {255, 180, 40};
+        config.endColor = {255, 30, 0};
 
         return config;
     }
@@ -41,6 +47,9 @@ namespace EffectPresets {
         config.burstParticleCount = 60;
         config.burstMinSpeed = 4.0f;
         config.burstMaxSpeed = 10.0f;
+
+        config.startColor = {255, 240, 80};
+        config.endColor = {255, 50, 0};
 
         return config;
     }
